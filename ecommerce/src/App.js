@@ -1,39 +1,33 @@
-import "./App.css";
-import "./categories.styles.scss";
-import Directory from "./components/directory/directory.component";
+import React from 'react';
+import Home from './routes/home/home.component';
+
+import { Routes, Route, Outlet} from 'react-router-dom';
+
+import Navigation from './routes/navigation/navigation.component';
+
+import Sign from './routes/sign-in/sign-in.component';
 
 const App = () => {
-  const categories = [
-    {
-      id: 1,
-      title: "hats",
-      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
-    },
-    {
-      id: 2,
-      title: "jackets",
-      imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-    },
-    {
-      id: 3,
-      title: "sneakers",
-      imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-    },
-    {
-      id: 4,
-      title: "Womens",
-      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-    },
-    {
-      id: 5,
-      title: "Men",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-    },
-  ];
+  return(
+    <Routes>
+      <Route path='/' element={<Navigation />}>
 
-  return (
-   <Directory categories={categories}/>
-  );
+      //These index is to when even use is on these path '/' it should directly hit index
+      <Route index element={<Home />} /> //Parent 
+      <Route path='/shop' element={<Shop />}/>  // Child nested
+      <Route path='/signin' element={<Sign />}/>  
+      </Route>
+      </Routes>
+  )
 };
+
+
+const Shop = () => {
+  return(
+    <h1>We are in shop </h1>
+  )
+}
+
+
 
 export default App;
